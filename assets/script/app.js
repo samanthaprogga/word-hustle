@@ -96,7 +96,6 @@ function resetGame() {
   backgroundMusic.pause();
   resetBtn.style.display = 'inline-block';
   gameEndContainer.style.display = 'none';
-  resetBtn.style.display = 'none'; // Hide reset button
 }
 
 

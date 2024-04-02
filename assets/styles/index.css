@@ -163,7 +163,6 @@ main {
   }
 }
 
-/* Media queries for small desktop screens */
 @media only screen and (min-width: 768px) {
   .container {
     width: 70%;
@@ -171,7 +170,6 @@ main {
   }
 }
 
-/* Media queries for medium desktop screens */
 @media only screen and (min-width: 992px) {
   .container {
     width: 60%;
@@ -179,7 +177,6 @@ main {
   }
 }
 
-/* Media queries for large desktop screens */
 @media only screen and (min-width: 1200px) {
   .container {
     width: 50%;
