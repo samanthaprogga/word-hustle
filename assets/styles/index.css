@@ -20,7 +20,7 @@ body {
 
 .container {
   width: 330px;
-  height: 470px;
+  height: 490px;
   margin: auto;
   text-align: center;
   align-items: center;
@@ -47,9 +47,8 @@ body {
 }
 
 h1 {
-
   font-size: 45px;
-  padding: 10px;
+  padding: 5px;
 }
 
 p {
@@ -69,7 +68,7 @@ p {
 
 .word {
   font-size: 30px;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .time {
@@ -82,7 +81,7 @@ input[type="text"] {
   text-align: center;
   place-items: center;
   justify-content: center;
-  margin: 15px 30px 30px;
+  margin: 15px 30px 15px;
   border-radius: 5px;
   width: 300px;
   height: 40px;
@@ -97,8 +96,8 @@ input[type="text"] {
 }
 
 button {
-  padding: 15px 25px;
-  margin-top: 50px;
+  padding: 10px 20px;
+  margin-top: 20px;
   width: 150px;
   margin-right: 10px;
   background-color: hsl(211, 100%, 50%, 0.6);
@@ -124,6 +123,10 @@ button:hover {
   color: hsl(230, 100%, 50%);
 }
 
+.resetBtn {
+  margin-top: 10px;
+}
+
 main {
   position: fixed;
   top: 0;
@@ -142,13 +145,51 @@ main {
 
 .timer {
   position: absolute;
-  top: 133px;
+  top: 124px;
   /* Adjust vertical position */
   left: 44%;
   /* Center horizontally */
   transform: translateX(-50%);
 }
 
+/*---------------------------------------*/
+/* Modal                                 */
+/*---------------------------------------*/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 20% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  width: 330px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 
@@ -181,5 +222,37 @@ main {
   .container {
     width: 50%;
     max-width: 1200px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    max-width: 800px;
+  }
+
+  .userInput {
+    font-size: 1.2em;
+    /* Adjust other styles as needed */
+  }
+
+  button {
+    font-size: 1.2em;
+    /* Adjust other styles as needed */
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  .userInput {
+    font-size: 1.4em;
+    /* Adjust other styles as needed */
+  }
+
+  button {
+    font-size: 1.4em;
+    /* Adjust other styles as needed */
   }
 }

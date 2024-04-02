@@ -31,6 +31,9 @@ const gameEndContainer = document.querySelector('.gameEndContainer');
 const backgroundMusic = document.querySelector('#backgroundMusic');
 const correctSound = document.querySelector('#correctSound');
 const resetBtn = document.querySelector('.resetBtn');
+const closeButton = document.querySelector('.close');
+const modal = document.querySelector('#scoreModal');
+
 
 let time = 99;
 let score = 0;
@@ -66,7 +69,7 @@ function startGame() {
     isPlaying = true;
     startBtn.style.display = 'none';
     restartBtn.style.display = 'inline-block';
-    time = 5;
+    time = 99;
     score = 0;
     scoreElement.textContent = score;
     showWord();
@@ -82,7 +85,6 @@ function startGame() {
   }
 }
 
-// Reset game
 function resetGame() {
   score = 0;
   scoreElement.textContent = score;
@@ -93,10 +95,18 @@ function resetGame() {
   // Reset game state
   isPlaying = false;
   clearInterval(timerInterval);
-  backgroundMusic.pause();
-  resetBtn.style.display = 'inline-block';
+  pauseAndResetSound(backgroundMusic);
+  pauseAndResetSound(correctSound);
+  resetBtn.style.display = 'none'; // Hide the reset button when resetting the game
   gameEndContainer.style.display = 'none';
+  startGame(); // Restart the game
 }
+
+function pauseAndResetSound(sound) {
+  sound.pause();
+  sound.currentTime = 0;
+}
+
 
 
 // Restart game
@@ -118,7 +128,7 @@ function restartGame() {
 
 
   // Redirect to the starting page
-  window.location.href = 'index.html'; // Change 'index.html' to your actual starting page file name
+  window.location.href = 'index.html';
 }
 
 // Game over
@@ -126,34 +136,53 @@ function gameOver() {
   isPlaying = false;
   startBtn.disabled = false;
   backgroundMusic.pause();
-  startBtn.style.display = 'none'
-  userInput.style.display = 'none'
-  wordElement.style.display = 'none'
+  startBtn.style.display = 'none';
+  userInput.style.display = 'none';
+  wordElement.style.display = 'none';
   gameEndContainer.style.display = 'block';
+  resetBtn.style.display = 'none';
+}
+
+function openModal() {
+  modal.style.display = 'block';
+}
+
+function closeModal() {
+  const modal = document.getElementById('scoreModal');
+  modal.style.display = 'none';
+}
+
+
+if (closeButton) {
+  closeButton.addEventListener('click', closeModal);
 }
 
 function showScore() {
-  // Calculate percentage
+  const scoreDetails = document.getElementById("scoreDetails");
+  const currentDate = new Date().toLocaleDateString('en-CA');
   const percentage = ((score / words.length) * 100).toFixed(2);
 
-  // Get current date and time
-  const currentDate = new Date().toLocaleString();
-
   // Create a new Score instance
-  const currentScore = new Score(currentDate, score, words.length);
+  const currentScore = new Score(currentDate, score, percentage);
 
-  // Log the score for testing
-  console.log(currentScore);
+  // Populate modal with score data
+  scoreDetails.innerHTML = `
+      <p>Date: ${currentScore.date}</p>
+      <p>Hits: ${currentScore.hits}</p>
+      <p>Percentage: ${currentScore.percentage}%</p>
+  `;
 
-  const scoreElement = document.querySelector('.score');
-  scoreElement.textContent = score;
+  // Open the modal
+  openModal();
 }
+
 
 
 // Show random word
 function showWord() {
   wordIndex = Math.floor(Math.random() * words.length);
   wordElement.textContent = words[wordIndex];
+  resetBtn.style.display = 'inline-block'
 }
 
 // Update time
@@ -161,7 +190,7 @@ function updateTime() {
   time--;
   timeElement.textContent = time;
 
-  if (time === 5) {
+  if (time === 99) {
     showWord();
   }
 
@@ -182,11 +211,11 @@ function startMatch() {
 
     correctSound.play();
 
- // Pause the sound after 1 seconds
- setTimeout(() => {
-  correctSound.pause();
-  correctSound.currentTime = 0; // Reset audio to the beginning
-}, 1000);
+    // Pause the sound after 1 seconds
+    setTimeout(() => {
+      correctSound.pause();
+      correctSound.currentTime = 0; // Reset audio to the beginning
+    }, 1000);
 
     setTimeout(() => {
       wordElement.style.color = ''; // Reset color after a delay (optional)

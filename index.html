@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
+  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Hustle</title>
@@ -17,26 +17,33 @@
   </head>
   <body>
   <main>
-  <div class="container">
-    <h1>Word Hustle</h1>
-    <div class="game">
-      <img src="./assets/image/timer.png" class="timer">
-      <p><span class="time">99</span>s</p>
-      <p class="word"></p>
-      <input type="text" class="userInput" placeholder="Type here...">
-      <p>Hit: <span class="score">0</span></p>
-      <button class="startBtn"><p>Start</p></button>
-      <button class="resetBtn" style="display: none;"><p>Reset</p></button>
+    <div class="container">
+      <h1>Word Hustle</h1>
+      <div class="game">
+        <img src="./assets/image/timer.png" class="timer">
+        <p><span class="time">99</span>s</p>
+        <p class="word"></p>
+        <input type="text" class="userInput" placeholder="Type here...">
+        <p class="hit">Hit: <span class="score">0</span></p>
+        <button class="startBtn"><p>Start</p></button>
+        <button class="resetBtn" style="display: none;"><p>Reset</p></button>
+      </div>
+      <div class="gameEndContainer" style="display: none;">
+        <button class="restartBtn"><p>Play Again</p></button>
+        <button class="scoreBtn"><p>Score</p></button>
+      </div>
     </div>
-    <div class="gameEndContainer" style="display: none;">
-      <button class="restartBtn"><p>Play Again</p></button>
-      <button class="scoreBtn"><p>Score</p></button>
+
+      <!-- Score Modal -->
+  <div id="scoreModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Your Score</h2>
+      <div id="scoreDetails"></div>
     </div>
   </div>
   </main>
-
   <audio id="backgroundMusic" src="./assets/Audio/sound-01.mp3" loop></audio>
   <audio id="correctSound" src="./assets/Audio/sound-02.wav" loop></audio>
-
   </body>
 </html>
